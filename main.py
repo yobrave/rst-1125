@@ -1,5 +1,6 @@
 """Roast Your Own Agent: single-line roast exporter, round 4."""
 import json
+import os
 import pathlib
 import shutil
 
@@ -8,7 +9,7 @@ TAGLINE = "roa4-roast-agent-r4"
 
 
 def prepare():
-    src = pathlib.Path("entry.txt")
+    src = pathlib.Path(__file__).resolve().parent / "entry.txt"
     body = src.read_text(encoding="utf-8").strip()
     n = len(body)
     if n < 1 or n > RANGE_HI:
@@ -17,8 +18,8 @@ def prepare():
 
 
 def deliver(src):
-    out = pathlib.Path("out")
-    out.mkdir(exist_ok=True)
+    out = pathlib.Path(os.environ.get("MAKEFUN_OUTPUT_DIR") or "out")
+    out.mkdir(parents=True, exist_ok=True)
     shutil.copyfile(src, out / "entry.txt")
 
 
