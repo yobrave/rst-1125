@@ -1,0 +1,1 @@
+My agent spent a full token budget proving the meeting was at 3, in a thread where I said 4, then logged the disagreement as 'clarified.'
